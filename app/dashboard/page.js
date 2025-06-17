@@ -27,12 +27,12 @@ export default function Dashboard() {
   if (loading || !user) return <div>Loading...</div>;
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl mb-4">Redirecting to your dashboard...</h1>
+    <div>
+      <h1>Redirecting to your dashboard...</h1>
       <p>Role: {user.role}</p>
       <button
         onClick={logout}
-        className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+        className
       >
         Logout
       </button>
