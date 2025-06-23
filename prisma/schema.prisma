@@ -15,6 +15,8 @@ model User {
   role      Role
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  appraisals Appraisal[]
 }
 
 enum Role {
@@ -22,4 +24,23 @@ enum Role {
   EMPLOYEE
   MANAGER
   REVIEWER
+}
+
+model Appraisal {
+  id String  @id @default(uuid())
+  employeeId String
+  employee   User   @relation(fields: [employeeId], references: [id])
+  content    String
+  status     AppraisalStatus  @default(PENDING)
+  feedback   String?          // added optional feedback field
+  managerId  String?          // added optional managerId field
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum AppraisalStatus{
+  PENDING
+  REVIEWED_BY_MANAGER
+  REVIEWED_BY_REVIEWER
+  COMPLETED
 }
